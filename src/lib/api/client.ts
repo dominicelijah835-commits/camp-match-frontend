@@ -47,7 +47,7 @@ async function request<T>(
   const token = authTokenProvider();
   const response = await fetch(buildUrl(path, options.query), {
     method,
-    signal: options.signal,
+    signal: options.signal ?? null,
     headers: {
       Accept: "application/json",
       ...(options.body ? { "Content-Type": "application/json" } : {}),
