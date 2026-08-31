@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 
 type PropertyCardProps = {
   listing: Listing;
-  saved?: boolean;
-  onToggleSave?: (id: string) => void;
-  className?: string;
-  priority?: boolean;
+  saved?: boolean | undefined;
+  onToggleSave?: ((id: string) => void) | undefined;
+  className?: string | undefined;
+  priority?: boolean | undefined;
 };
 
 export function PropertyCard({

@@ -7,8 +7,8 @@ export function LoadingState({
   label = "Loading",
   className,
 }: {
-  label?: string;
-  className?: string;
+  label?: string | undefined;
+  className?: string | undefined;
 }) {
   return (
     <div
@@ -33,10 +33,10 @@ export function EmptyState({
   className,
 }: {
   title: string;
-  description?: string;
-  icon?: ReactNode;
-  action?: ReactNode;
-  className?: string;
+  description?: string | undefined;
+  icon?: ReactNode | undefined;
+  action?: ReactNode | undefined;
+  className?: string | undefined;
 }) {
   return (
     <div
@@ -63,10 +63,10 @@ export function ErrorState({
   onRetry,
   className,
 }: {
-  title?: string;
-  description?: string;
-  onRetry?: () => void;
-  className?: string;
+  title?: string | undefined;
+  description?: string | undefined;
+  onRetry?: (() => void) | undefined;
+  className?: string | undefined;
 }) {
   return (
     <div

@@ -8,11 +8,11 @@ import { ErrorState } from "@/components/common/states";
 
 type PropertyRailProps = {
   title: string;
-  subtitle?: string;
-  listings?: Listing[];
-  isLoading?: boolean;
-  isError?: boolean;
-  onRetry?: () => void;
+  subtitle?: string | undefined;
+  listings?: Listing[] | undefined;
+  isLoading?: boolean | undefined;
+  isError?: boolean | undefined;
+  onRetry?: (() => void) | undefined;
 };
 
 export function PropertyRail({
