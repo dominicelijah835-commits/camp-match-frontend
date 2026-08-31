@@ -99,15 +99,15 @@ export type Listing = {
 };
 
 export type ListingSearchParams = {
-  query?: string;
-  universityId?: string;
-  area?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  accommodationTypes?: AccommodationType[];
-  maxDistanceKm?: number;
-  verifiedOnly?: boolean;
-  sort?: ListingSort;
+  query?: string | undefined;
+  universityId?: string | undefined;
+  area?: string | undefined;
+  minPrice?: number | undefined;
+  maxPrice?: number | undefined;
+  accommodationTypes?: AccommodationType[] | undefined;
+  maxDistanceKm?: number | undefined;
+  verifiedOnly?: boolean | undefined;
+  sort?: ListingSort | undefined;
 };
 
 export type ListingSort =

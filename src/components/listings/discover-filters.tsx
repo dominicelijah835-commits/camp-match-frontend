@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 type Props = {
   universities: University[];
-  universityId?: string;
+  universityId?: string | undefined;
   onUniversityChange: (id: string | undefined) => void;
   verifiedOnly: boolean;
   onVerifiedChange: (value: boolean) => void;
