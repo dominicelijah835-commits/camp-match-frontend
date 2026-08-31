@@ -10,11 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BookingsRouteImport } from './routes/bookings'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SavedRouteImport } from './routes/saved'
+import { Route as ListingsListingIdRouteImport } from './routes/listings.$listingId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -22,31 +32,93 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SavedRoute = SavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListingsListingIdRoute = ListingsListingIdRouteImport.update({
+  id: '/listings/$listingId',
+  path: '/listings/$listingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/messages': typeof MessagesRoute
+  '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
+  '/listings/$listingId': typeof ListingsListingIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/messages': typeof MessagesRoute
+  '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
+  '/listings/$listingId': typeof ListingsListingIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/messages': typeof MessagesRoute
+  '/profile': typeof ProfileRoute
+  '/saved': typeof SavedRoute
+  '/listings/$listingId': typeof ListingsListingIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/discover'
+  fullPaths:
+    | '/'
+    | '/bookings'
+    | '/discover'
+    | '/messages'
+    | '/profile'
+    | '/saved'
+    | '/listings/$listingId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover'
-  id: '__root__' | '/' | '/discover'
+  to:
+    | '/'
+    | '/bookings'
+    | '/discover'
+    | '/messages'
+    | '/profile'
+    | '/saved'
+    | '/listings/$listingId'
+  id:
+    | '__root__'
+    | '/'
+    | '/bookings'
+    | '/discover'
+    | '/messages'
+    | '/profile'
+    | '/saved'
+    | '/listings/$listingId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BookingsRoute: typeof BookingsRoute
   DiscoverRoute: typeof DiscoverRoute
+  MessagesRoute: typeof MessagesRoute
+  ProfileRoute: typeof ProfileRoute
+  SavedRoute: typeof SavedRoute
+  ListingsListingIdRoute: typeof ListingsListingIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/discover': {
       id: '/discover'
       path: '/discover'
@@ -65,12 +144,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saved': {
+      id: '/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof SavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/listings/$listingId': {
+      id: '/listings/$listingId'
+      path: '/listings/$listingId'
+      fullPath: '/listings/$listingId'
+      preLoaderRoute: typeof ListingsListingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BookingsRoute: BookingsRoute,
   DiscoverRoute: DiscoverRoute,
+  MessagesRoute: MessagesRoute,
+  ProfileRoute: ProfileRoute,
+  SavedRoute: SavedRoute,
+  ListingsListingIdRoute: ListingsListingIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
