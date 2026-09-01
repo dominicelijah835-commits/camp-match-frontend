@@ -51,7 +51,7 @@ function HomePage() {
       <div className="space-y-8 py-6">
         <header className="px-4 sm:px-6">
           <p className="text-sm text-muted-foreground">
-            {greetingForNow()}, Amara 👋
+            {greetingForNow()}, Amara
           </p>
           <h1 className="mt-1 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
             Find a place
