@@ -12,10 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookingsRouteImport } from './routes/bookings'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SavedRouteImport } from './routes/saved'
+import { Route as SelectRoleRouteImport } from './routes/select-role'
+import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as ListingsListingIdRouteImport } from './routes/listings.$listingId'
+import { Route as OnboardingOwnerRouteImport } from './routes/onboarding.owner'
+import { Route as OnboardingScoutRouteImport } from './routes/onboarding.scout'
+import { Route as OnboardingStudentRouteImport } from './routes/onboarding.student'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -32,6 +39,11 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MessagesRoute = MessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
@@ -42,9 +54,24 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SavedRoute = SavedRouteImport.update({
   id: '/saved',
   path: '/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SelectRoleRoute = SelectRoleRouteImport.update({
+  id: '/select-role',
+  path: '/select-role',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ListingsListingIdRoute = ListingsListingIdRouteImport.update({
@@ -52,34 +79,70 @@ const ListingsListingIdRoute = ListingsListingIdRouteImport.update({
   path: '/listings/$listingId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingOwnerRoute = OnboardingOwnerRouteImport.update({
+  id: '/onboarding/owner',
+  path: '/onboarding/owner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingScoutRoute = OnboardingScoutRouteImport.update({
+  id: '/onboarding/scout',
+  path: '/onboarding/scout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingStudentRoute = OnboardingStudentRouteImport.update({
+  id: '/onboarding/student',
+  path: '/onboarding/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/select-role': typeof SelectRoleRoute
+  '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/select-role': typeof SelectRoleRoute
+  '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bookings': typeof BookingsRoute
   '/discover': typeof DiscoverRoute
+  '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/select-role': typeof SelectRoleRoute
+  '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +150,66 @@ export interface FileRouteTypes {
     | '/'
     | '/bookings'
     | '/discover'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/saved'
+    | '/select-role'
+    | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/bookings'
     | '/discover'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/saved'
+    | '/select-role'
+    | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   id:
     | '__root__'
     | '/'
     | '/bookings'
     | '/discover'
+    | '/login'
     | '/messages'
     | '/profile'
+    | '/register'
     | '/saved'
+    | '/select-role'
+    | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookingsRoute: typeof BookingsRoute
   DiscoverRoute: typeof DiscoverRoute
+  LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
   ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
   SavedRoute: typeof SavedRoute
+  SelectRoleRoute: typeof SelectRoleRoute
+  VerifyRoute: typeof VerifyRoute
   ListingsListingIdRoute: typeof ListingsListingIdRoute
+  OnboardingOwnerRoute: typeof OnboardingOwnerRoute
+  OnboardingScoutRoute: typeof OnboardingScoutRoute
+  OnboardingStudentRoute: typeof OnboardingStudentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -144,6 +235,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/messages': {
       id: '/messages'
       path: '/messages'
@@ -158,11 +256,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/saved': {
       id: '/saved'
       path: '/saved'
       fullPath: '/saved'
       preLoaderRoute: typeof SavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/select-role': {
+      id: '/select-role'
+      path: '/select-role'
+      fullPath: '/select-role'
+      preLoaderRoute: typeof SelectRoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/listings/$listingId': {
@@ -172,6 +291,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListingsListingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/owner': {
+      id: '/onboarding/owner'
+      path: '/onboarding/owner'
+      fullPath: '/onboarding/owner'
+      preLoaderRoute: typeof OnboardingOwnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/scout': {
+      id: '/onboarding/scout'
+      path: '/onboarding/scout'
+      fullPath: '/onboarding/scout'
+      preLoaderRoute: typeof OnboardingScoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/student': {
+      id: '/onboarding/student'
+      path: '/onboarding/student'
+      fullPath: '/onboarding/student'
+      preLoaderRoute: typeof OnboardingStudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -179,10 +319,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookingsRoute: BookingsRoute,
   DiscoverRoute: DiscoverRoute,
+  LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
   ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
   SavedRoute: SavedRoute,
+  SelectRoleRoute: SelectRoleRoute,
+  VerifyRoute: VerifyRoute,
   ListingsListingIdRoute: ListingsListingIdRoute,
+  OnboardingOwnerRoute: OnboardingOwnerRoute,
+  OnboardingScoutRoute: OnboardingScoutRoute,
+  OnboardingStudentRoute: OnboardingStudentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
