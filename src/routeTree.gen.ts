@@ -20,6 +20,9 @@ import { Route as SavedRouteImport } from './routes/saved'
 import { Route as SelectRoleRouteImport } from './routes/select-role'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as ListingsListingIdRouteImport } from './routes/listings.$listingId'
+import { Route as OnboardingOwnerRouteImport } from './routes/onboarding.owner'
+import { Route as OnboardingScoutRouteImport } from './routes/onboarding.scout'
+import { Route as OnboardingStudentRouteImport } from './routes/onboarding.student'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +79,21 @@ const ListingsListingIdRoute = ListingsListingIdRouteImport.update({
   path: '/listings/$listingId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingOwnerRoute = OnboardingOwnerRouteImport.update({
+  id: '/onboarding/owner',
+  path: '/onboarding/owner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingScoutRoute = OnboardingScoutRouteImport.update({
+  id: '/onboarding/scout',
+  path: '/onboarding/scout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingStudentRoute = OnboardingStudentRouteImport.update({
+  id: '/onboarding/student',
+  path: '/onboarding/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +107,9 @@ export interface FileRoutesByFullPath {
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +123,9 @@ export interface FileRoutesByTo {
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +140,9 @@ export interface FileRoutesById {
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
+  '/onboarding/owner': typeof OnboardingOwnerRoute
+  '/onboarding/scout': typeof OnboardingScoutRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +158,9 @@ export interface FileRouteTypes {
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +174,9 @@ export interface FileRouteTypes {
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   id:
     | '__root__'
     | '/'
@@ -157,6 +190,9 @@ export interface FileRouteTypes {
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
+    | '/onboarding/owner'
+    | '/onboarding/scout'
+    | '/onboarding/student'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +207,9 @@ export interface RootRouteChildren {
   SelectRoleRoute: typeof SelectRoleRoute
   VerifyRoute: typeof VerifyRoute
   ListingsListingIdRoute: typeof ListingsListingIdRoute
+  OnboardingOwnerRoute: typeof OnboardingOwnerRoute
+  OnboardingScoutRoute: typeof OnboardingScoutRoute
+  OnboardingStudentRoute: typeof OnboardingStudentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +291,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListingsListingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/owner': {
+      id: '/onboarding/owner'
+      path: '/onboarding/owner'
+      fullPath: '/onboarding/owner'
+      preLoaderRoute: typeof OnboardingOwnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/scout': {
+      id: '/onboarding/scout'
+      path: '/onboarding/scout'
+      fullPath: '/onboarding/scout'
+      preLoaderRoute: typeof OnboardingScoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/student': {
+      id: '/onboarding/student'
+      path: '/onboarding/student'
+      fullPath: '/onboarding/student'
+      preLoaderRoute: typeof OnboardingStudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +327,9 @@ const rootRouteChildren: RootRouteChildren = {
   SelectRoleRoute: SelectRoleRoute,
   VerifyRoute: VerifyRoute,
   ListingsListingIdRoute: ListingsListingIdRoute,
+  OnboardingOwnerRoute: OnboardingOwnerRoute,
+  OnboardingScoutRoute: OnboardingScoutRoute,
+  OnboardingStudentRoute: OnboardingStudentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
