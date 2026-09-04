@@ -14,9 +14,11 @@ import { Route as BookingsRouteImport } from './routes/bookings'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SavedRouteImport } from './routes/saved'
+import { Route as ScoutRouteImport } from './routes/scout'
 import { Route as SelectRoleRouteImport } from './routes/select-role'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as ListingsListingIdRouteImport } from './routes/listings.$listingId'
@@ -49,6 +51,11 @@ const MessagesRoute = MessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OwnerRoute = OwnerRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -62,6 +69,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const SavedRoute = SavedRouteImport.update({
   id: '/saved',
   path: '/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScoutRoute = ScoutRouteImport.update({
+  id: '/scout',
+  path: '/scout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SelectRoleRoute = SelectRoleRouteImport.update({
@@ -101,9 +113,11 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/owner': typeof OwnerRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/scout': typeof ScoutRoute
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
@@ -117,9 +131,11 @@ export interface FileRoutesByTo {
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/owner': typeof OwnerRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/scout': typeof ScoutRoute
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
@@ -134,9 +150,11 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/owner': typeof OwnerRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/saved': typeof SavedRoute
+  '/scout': typeof ScoutRoute
   '/select-role': typeof SelectRoleRoute
   '/verify': typeof VerifyRoute
   '/listings/$listingId': typeof ListingsListingIdRoute
@@ -152,9 +170,11 @@ export interface FileRouteTypes {
     | '/discover'
     | '/login'
     | '/messages'
+    | '/owner'
     | '/profile'
     | '/register'
     | '/saved'
+    | '/scout'
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
@@ -168,9 +188,11 @@ export interface FileRouteTypes {
     | '/discover'
     | '/login'
     | '/messages'
+    | '/owner'
     | '/profile'
     | '/register'
     | '/saved'
+    | '/scout'
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
@@ -184,9 +206,11 @@ export interface FileRouteTypes {
     | '/discover'
     | '/login'
     | '/messages'
+    | '/owner'
     | '/profile'
     | '/register'
     | '/saved'
+    | '/scout'
     | '/select-role'
     | '/verify'
     | '/listings/$listingId'
@@ -201,9 +225,11 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
+  OwnerRoute: typeof OwnerRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   SavedRoute: typeof SavedRoute
+  ScoutRoute: typeof ScoutRoute
   SelectRoleRoute: typeof SelectRoleRoute
   VerifyRoute: typeof VerifyRoute
   ListingsListingIdRoute: typeof ListingsListingIdRoute
@@ -249,6 +275,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MessagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/owner': {
+      id: '/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof OwnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -268,6 +301,13 @@ declare module '@tanstack/react-router' {
       path: '/saved'
       fullPath: '/saved'
       preLoaderRoute: typeof SavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scout': {
+      id: '/scout'
+      path: '/scout'
+      fullPath: '/scout'
+      preLoaderRoute: typeof ScoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/select-role': {
@@ -321,9 +361,11 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
+  OwnerRoute: OwnerRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   SavedRoute: SavedRoute,
+  ScoutRoute: ScoutRoute,
   SelectRoleRoute: SelectRoleRoute,
   VerifyRoute: VerifyRoute,
   ListingsListingIdRoute: ListingsListingIdRoute,
