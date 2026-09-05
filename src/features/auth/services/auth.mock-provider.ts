@@ -19,6 +19,17 @@ const SESSION_KEY = "campmatch.session";
 /** Any 6-digit code except this one is treated as invalid in the demo. */
 const DEMO_CODE = "123456";
 
+/**
+ * Seeded demo account for development testing (mock provider only).
+ * Sign in with these credentials on the login screen.
+ */
+const DEMO_ACCOUNT = {
+  email: "dominicelijah835@gmail.com",
+  password: "9@#56785",
+  fullName: "Dominic Elijah",
+  phone: "+234 810 000 0000",
+} as const;
+
 function delay<T>(value: T, ms = 700): Promise<T> {
   return new Promise((resolve) => setTimeout(() => resolve(value), ms));
 }
@@ -88,14 +99,21 @@ export const mockAuthProvider: AuthProvider = {
     if (existing) {
       return writeSession({ ...existing, accessToken: "mock-token" });
     }
+    const isDemoAccount =
+      payload.identifier.trim().toLowerCase() === DEMO_ACCOUNT.email &&
+      payload.password === DEMO_ACCOUNT.password;
     const isEmail = payload.identifier.includes("@");
     return writeSession({
       accessToken: "mock-token",
       user: {
         ...makeUser({
-          fullName: "Amara Okafor",
+          fullName: isDemoAccount ? DEMO_ACCOUNT.fullName : "Amara Okafor",
           email: isEmail ? payload.identifier : "amara@example.com",
-          phone: isEmail ? "+234 800 000 0000" : payload.identifier,
+          phone: isEmail
+            ? isDemoAccount
+              ? DEMO_ACCOUNT.phone
+              : "+234 800 000 0000"
+            : payload.identifier,
           emailVerified: true,
         }),
         role: "student",
