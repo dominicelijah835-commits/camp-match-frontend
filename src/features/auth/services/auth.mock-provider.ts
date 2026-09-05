@@ -30,6 +30,23 @@ const DEMO_ACCOUNT = {
   phone: "+234 810 000 0000",
 } as const;
 
+function createDemoSession(): Session {
+  return {
+    accessToken: "mock-token",
+    user: {
+      id: "usr_demo_student",
+      fullName: DEMO_ACCOUNT.fullName,
+      email: DEMO_ACCOUNT.email,
+      phone: DEMO_ACCOUNT.phone,
+      role: "student",
+      accountStatus: "active",
+      emailVerified: true,
+      onboardingComplete: true,
+      identityVerification: "not_started",
+    },
+  };
+}
+
 function delay<T>(value: T, ms = 700): Promise<T> {
   return new Promise((resolve) => setTimeout(() => resolve(value), ms));
 }
@@ -87,7 +104,11 @@ function makeUser(input: {
 
 export const mockAuthProvider: AuthProvider = {
   async getCurrentUser() {
-    return delay(readSession()?.user ?? null, 300);
+    const session = readSession();
+    if (session?.user.email.toLowerCase() === DEMO_ACCOUNT.email) {
+      return delay(writeSession(createDemoSession()).user, 300);
+    }
+    return delay(session?.user ?? null, 300);
   },
 
   async login(payload: LoginPayload) {
@@ -95,24 +116,24 @@ export const mockAuthProvider: AuthProvider = {
     if (payload.password.length < 8) {
       throw createAppError("AUTHENTICATION_ERROR");
     }
+    const isDemoAccount =
+      payload.identifier.trim().toLowerCase() === DEMO_ACCOUNT.email &&
+      payload.password === DEMO_ACCOUNT.password;
+    if (isDemoAccount) return writeSession(createDemoSession());
+
     const existing = readSession();
     if (existing) {
       return writeSession({ ...existing, accessToken: "mock-token" });
     }
-    const isDemoAccount =
-      payload.identifier.trim().toLowerCase() === DEMO_ACCOUNT.email &&
-      payload.password === DEMO_ACCOUNT.password;
     const isEmail = payload.identifier.includes("@");
     return writeSession({
       accessToken: "mock-token",
       user: {
         ...makeUser({
-          fullName: isDemoAccount ? DEMO_ACCOUNT.fullName : "Amara Okafor",
+          fullName: "Amara Okafor",
           email: isEmail ? payload.identifier : "amara@example.com",
           phone: isEmail
-            ? isDemoAccount
-              ? DEMO_ACCOUNT.phone
-              : "+234 800 000 0000"
+            ? "+234 800 000 0000"
             : payload.identifier,
           emailVerified: true,
         }),
