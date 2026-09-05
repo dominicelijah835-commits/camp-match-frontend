@@ -19,6 +19,17 @@ const SESSION_KEY = "campmatch.session";
 /** Any 6-digit code except this one is treated as invalid in the demo. */
 const DEMO_CODE = "123456";
 
+/**
+ * Seeded demo account for development testing (mock provider only).
+ * Sign in with these credentials on the login screen.
+ */
+const DEMO_ACCOUNT = {
+  email: "dominicelijah835@gmail.com",
+  password: "9@#56785",
+  fullName: "Dominic Elijah",
+  phone: "+234 810 000 0000",
+} as const;
+
 function delay<T>(value: T, ms = 700): Promise<T> {
   return new Promise((resolve) => setTimeout(() => resolve(value), ms));
 }
