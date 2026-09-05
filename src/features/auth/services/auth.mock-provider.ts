@@ -99,14 +99,21 @@ export const mockAuthProvider: AuthProvider = {
     if (existing) {
       return writeSession({ ...existing, accessToken: "mock-token" });
     }
+    const isDemoAccount =
+      payload.identifier.trim().toLowerCase() === DEMO_ACCOUNT.email &&
+      payload.password === DEMO_ACCOUNT.password;
     const isEmail = payload.identifier.includes("@");
     return writeSession({
       accessToken: "mock-token",
       user: {
         ...makeUser({
-          fullName: "Amara Okafor",
+          fullName: isDemoAccount ? DEMO_ACCOUNT.fullName : "Amara Okafor",
           email: isEmail ? payload.identifier : "amara@example.com",
-          phone: isEmail ? "+234 800 000 0000" : payload.identifier,
+          phone: isEmail
+            ? isDemoAccount
+              ? DEMO_ACCOUNT.phone
+              : "+234 800 000 0000"
+            : payload.identifier,
           emailVerified: true,
         }),
         role: "student",
