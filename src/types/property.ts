@@ -41,7 +41,7 @@ export type PropertyPhoto = {
   isPrimary: boolean;
   position: number;
   reviewStatus: ImageReviewStatus;
-  reviewNote?: string;
+  reviewNote?: string | undefined;
 };
 
 export type PropertyLocation = {
@@ -52,13 +52,13 @@ export type PropertyLocation = {
   city: string;
   state: string;
   /** Resolved by the backend — the frontend only displays it. */
-  distanceFromCampusKm?: number;
+  distanceFromCampusKm?: number | undefined;
 };
 
 export type PropertyPricing = {
   rent: number;
   period: PricePeriod;
-  serviceChargeYear?: number;
+  serviceChargeYear?: number | undefined;
 };
 
 export type PropertyFeatures = {
@@ -72,7 +72,7 @@ export type PropertyAvailability = {
   status: AvailabilityStatus;
   availableFrom: string;
   unitsAvailable: number;
-  note?: string;
+  note?: string | undefined;
 };
 
 export type PropertyPerformance = {
@@ -90,16 +90,16 @@ export type PropertyVerification = {
     id: "identity" | "ownership" | "property_review" | "images";
     label: string;
     status: VerificationStepStatus;
-    note?: string;
+    note?: string | undefined;
   }[];
-  lastUpdatedAt?: string;
+  lastUpdatedAt?: string | undefined;
 };
 
 export type PropertyOwnerSummary = {
   id: string;
   name: string;
   verified: boolean;
-  phoneMasked?: string;
+  phoneMasked?: string | undefined;
 };
 
 /** What a scout may do on a property. Backend-driven — UX only. */
@@ -125,7 +125,7 @@ export type ActivityEvent = {
   id: string;
   type: "view" | "enquiry" | "update" | "status" | "photo" | "scout";
   title: string;
-  description?: string;
+  description?: string | undefined;
   occurredAt: string;
 };
 
@@ -163,9 +163,9 @@ export type PropertyDraftInput = {
   description: string;
   accommodationType: AccommodationType;
   location: Omit<PropertyLocation, "distanceFromCampusKm" | "universityName" | "city" | "state"> & {
-    universityName?: string;
-    city?: string;
-    state?: string;
+    universityName?: string | undefined;
+    city?: string | undefined;
+    state?: string | undefined;
   };
   pricing: PropertyPricing;
   features: PropertyFeatures;
