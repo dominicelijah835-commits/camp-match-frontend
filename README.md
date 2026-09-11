@@ -1,239 +1,128 @@
-# Camp match frontend
+# Camp Match --- Frontend
 
-CAMP MATCH — FRONTEND MASTER BUILD PROMPT
+> A modern student-housing marketplace designed to help students
+> discover verified accommodation, connect with trusted House Scouts,
+> and eventually complete secure bookings and transactions.
 
-Build the frontend for Camp Match, a modern student-housing marketplace for discovering verified accommodation, connecting with trusted House Scouts, and eventually handling bookings and secure transactions.
+## Overview
 
-IMPORTANT DEVELOPMENT RULE
+Camp Match is a student-focused housing platform built around **trust,
+convenience, and proximity to campus**.
 
-We are starting with the frontend only.
+The frontend supports the marketplace experience for discovering
+accommodation, searching and filtering properties, viewing property
+details, saving listings, and preparing for future booking, payment,
+verification, messaging, and trust-and-safety capabilities.
 
-Do NOT build or assume a backend yet.
+The project follows a **frontend-first, API-ready architecture**. Mock
+data is currently used so the frontend can be developed independently of
+the eventual Python/FastAPI REST API.
 
-Use mock JSON data for all dynamic content so the frontend can be developed independently.
+The key architectural principle is:
 
-The eventual backend will be a Python/FastAPI REST API returning JSON responses, often as arrays of objects.
+> **The UI should not need to change when the data source changes.**
 
-The frontend architecture MUST therefore make it extremely easy to replace mock data with real API calls later without rewriting UI components.
+------------------------------------------------------------------------
 
-Do NOT hard-code property information, users, listings, bookings, messages, etc. directly inside UI components.
+## Current Status
 
-Instead, separate:
+  -----------------------------------------------------------------------
+  Phase                   Description             Status
+  ----------------------- ----------------------- -----------------------
+  Phase 1                 Design System &         ✅ Completed
+                          Marketplace Foundation  
 
-UI components
+  Phase 2                 Authentication &        ✅ Completed
+                          Three-Role Onboarding   
 
-feature logic
+  Phase 3                 Property Owner & House  🚧 In Progress
+                          Scout Property          
+                          Management              
 
-mock data
+  Phase 4                 Roommate Matching       Planned
 
-API/service layer
+  Phase 5                 Booking &               Planned
+                          Escrow/Payments         
 
-types/interfaces
+  Phase 6                 Messaging &             Planned
+                          Notifications           
 
-The UI should consume data through reusable functions/services/hooks.
+  Phase 7                 Verification & Trust &  Planned
+                          Safety                  
 
-For example:
+  Phase 8                 Dashboard Refinement    Planned
 
-UI Component
-    ↓
-Feature Hook / Service
-    ↓
-Data Provider
-    ↓
-Mock JSON
+  Phase 9                 Administration          Planned
 
+  Phase 10                Backend Integration &   Planned
+                          Testing                 
+  -----------------------------------------------------------------------
 
-Later this should become:
+Development should proceed one phase at a time. Features belonging to
+later phases should not be implemented prematurely.
 
-UI Component
-    ↓
-Feature Hook / Service
-    ↓
-API Service
-    ↓
-FastAPI
+------------------------------------------------------------------------
 
+# Product Roles
 
-The UI should not need to change when the data source changes.
+Camp Match has three distinct primary roles.
 
-1. PRODUCT DESIGN DIRECTION
+## Student
 
-Camp Match should feel like:
+Students can:
 
-Airbnb × modern fintech × student lifestyle platform
+-   Discover accommodation
+-   Search by university, area, or property
+-   Filter listings
+-   View property details
+-   Save properties
+-   Contact trusted House Scouts
+-   Eventually request bookings and complete secure transactions
+-   Eventually participate in roommate matching
 
-but adapted specifically for students in Nigeria.
+## Property Owner
 
-The product should feel:
+Property Owners are the actual owners of properties listed on Camp
+Match.
 
-Modern
+They will be able to:
 
-Trustworthy
+-   Create properties
+-   Manage their properties
+-   Edit property information
+-   Manage photos
+-   Manage availability
+-   View verification status
+-   Monitor property activity
+-   Authorize and manage House Scouts
 
-Premium
+## House Scout
 
-Youthful
+House Scouts represent or manage properties on behalf of Property
+Owners.
 
-Clean
+They may:
 
-Simple
+-   View properties they are authorized to manage
+-   Manage permitted property information
+-   Manage availability where authorized
+-   Monitor relevant activity
+-   Help students discover suitable properties
 
-Safe
+**A House Scout is not automatically the owner of a property.**
 
-Mobile-first
+The distinction must always remain clear:
 
-Avoid making it look like an old-fashioned Nigerian real-estate website.
+> **Property Owner = owns the property**\
+> **House Scout = represents/manages an authorized property**
 
-Avoid excessive gradients, excessive glassmorphism, cluttered dashboards, or overly corporate visuals.
+------------------------------------------------------------------------
 
-The primary feeling should be:
+# Product Experience
 
-"I can trust this platform to help me find a place near my school."
+The primary student journey is:
 
-2. VISUAL STYLE
-
-Use a warm, premium visual system.
-
-Suggested palette:
-
-Primary
-
-Deep green / emerald tones representing:
-
-Trust
-
-Growth
-
-Safety
-
-Stability
-
-Background
-
-Warm off-white / very light neutral.
-
-Text
-
-Dark charcoal rather than pure black.
-
-Accent
-
-A subtle warm gold/orange accent for important highlights.
-
-Supporting colors
-
-Use restrained:
-
-Success green
-
-Warning amber
-
-Error red
-
-Neutral gray
-
-Do not use too many colors.
-
-The interface should remain visually calm.
-
-3. TYPOGRAPHY
-
-Use a modern highly readable sans-serif font.
-
-Prefer:
-
-Inter
-
-or another clean modern UI font if Inter is unavailable.
-
-Typography hierarchy should be obvious:
-
-Large page headings
-
-Medium section headings
-
-Comfortable body text
-
-Small metadata
-
-Strong price typography
-
-Example:
-
-Find a place
-that feels like home.
-
-Discover verified student
-housing near your campus.
-
-
-4. RESPONSIVE DESIGN
-
-The application must be mobile-first.
-
-Camp Match is primarily intended for students using smartphones.
-
-Design for:
-
-Small mobile
-
-Large mobile
-
-Tablet
-
-Desktop
-
-Large desktop
-
-Do not simply shrink the desktop design onto mobile.
-
-The mobile experience should be intentionally designed.
-
-5. MOBILE NAVIGATION
-
-Use a bottom navigation on mobile.
-
-Home
-Discover
-Saved
-Messages
-Profile
-
-
-Use appropriate icons with labels.
-
-The active navigation item should be visually obvious.
-
-Desktop should use a sidebar or responsive navigation depending on screen width.
-
-6. DESKTOP LAYOUT
-
-Desktop should use a clean application shell.
-
-Example:
-
-┌──────────────────────────────────────────────────────┐
-│ CAMP MATCH       Search...          🔔       Avatar  │
-├──────────────┬───────────────────────────────────────┤
-│              │                                       │
-│ Home         │                                       │
-│ Discover     │              MAIN CONTENT             │
-│ Saved        │                                       │
-│ Messages     │                                       │
-│ Bookings     │                                       │
-│ Profile      │                                       │
-│              │                                       │
-└──────────────┴───────────────────────────────────────┘
-
-
-Do not make the sidebar unnecessarily large.
-
-7. CORE UX PRINCIPLE
-
-Design the application around the student's journey, not around backend modules.
-
-The main experience should be:
-
+``` text
 Landing
    ↓
 Register / Login
@@ -255,100 +144,349 @@ Booking
 Payment
    ↓
 Confirmation
+```
 
+Frontend navigation should be based on **user experience and product
+roles**, not backend module names.
 
-Backend architecture should not determine frontend navigation.
+------------------------------------------------------------------------
 
-8. DEVELOPMENT APPROACH
+# Design Philosophy
 
-Build the frontend bit by bit.
+Camp Match should feel like:
 
-Do NOT attempt to generate every screen and feature at once.
+> **Airbnb × modern fintech × student lifestyle platform**
 
-Start with:
+adapted specifically for students in Nigeria.
 
-Phase 1
+The product should feel:
 
-Build only:
+-   Modern
+-   Trustworthy
+-   Premium
+-   Youthful
+-   Clean
+-   Simple
+-   Safe
+-   Mobile-first
 
-Design system
+The core product feeling is:
 
-Application shell
+> **"I can trust this platform to help me find a place near my
+> school."**
 
-Home
+Avoid the visual language of traditional, cluttered real-estate
+websites.
 
-Discover
+Avoid:
 
-Property Card
+-   Excessive gradients
+-   Excessive glassmorphism
+-   Overly corporate dashboards
+-   Unnecessary visual clutter
+-   Excessive colors
+-   Unnecessary animation
 
-Property Details
+------------------------------------------------------------------------
 
-Make these polished and production-quality before moving forward.
+# UI Preservation Rule
 
-After those are complete, continue to:
+The existing Camp Match interface is **approved product design**.
 
-Phase 2
+When extending the application:
 
-Authentication:
+-   Do not redesign completed screens unnecessarily.
+-   Do not replace the existing design system.
+-   Do not introduce an unrelated visual language.
+-   Reuse existing components wherever possible.
+-   Make new components feel native to Camp Match.
+-   Preserve existing navigation, cards, buttons, badges, typography,
+    spacing, colors, and responsive behavior.
+-   Do not modify completed functionality unless the current feature
+    genuinely requires it.
 
-Login
+### Core principle
 
-Register
+> **Same Camp Match. More capability.**
 
-Onboarding
+------------------------------------------------------------------------
 
-Phase 3
+# Visual System
 
-Student functionality:
+## Color Direction
 
-Saved listings
+### Primary
 
-Bookings
+Deep green / emerald tones representing trust, growth, safety, and
+stability.
 
-Payment UI
+### Background
 
-Phase 4
+Warm off-white and very light neutral surfaces.
 
-Communication:
+### Text
 
-Messages
+Dark charcoal rather than pure black.
 
-Notifications
+### Accent
 
-Phase 5
+A restrained warm gold/orange accent for important highlights.
 
-Trust:
+### Supporting Colors
 
-Identity verification
+Use restrained success green, warning amber, error red, and neutral
+gray.
 
-Property verification
+The interface should remain visually calm.
 
-Scout verification
+## Typography
 
-Phase 6
+Use a modern, highly readable sans-serif font.
 
-House Scout experience:
+**Inter** is preferred where available.
 
-Scout dashboard
+Typography should provide a clear hierarchy:
 
-My listings
+-   Large page headings
+-   Medium section headings
+-   Comfortable body text
+-   Small metadata
+-   Strong price typography
 
-Add property
+------------------------------------------------------------------------
 
-Manage listings
+# Responsive Design
 
-Phase 7
+Camp Match is **mobile-first** because students are expected to use the
+platform primarily from smartphones.
 
-Admin interface.
+Support:
 
-Do not build Phase 2–7 until Phase 1 has a strong visual foundation.
+-   Small mobile
+-   Large mobile
+-   Tablet
+-   Desktop
+-   Large desktop
 
-9. COMPONENT-FIRST DEVELOPMENT
+Do not simply shrink the desktop interface for mobile.
 
-Create reusable components instead of duplicating markup.
+Mobile layouts should be intentionally designed around:
 
-Create a component system containing reusable primitives such as:
+-   Thumb-friendly controls
+-   Large touch targets
+-   Bottom navigation
+-   Horizontal scrolling where appropriate
+-   Bottom sheets for filters
+-   Sticky actions when useful
+-   Readable typography
+-   Optimized images
 
+------------------------------------------------------------------------
+
+# Navigation
+
+## Mobile
+
+Primary navigation:
+
+-   Home
+-   Discover
+-   Saved
+-   Messages
+-   Profile
+
+The active navigation item should always be visually clear.
+
+## Desktop
+
+Use a clean application shell with a compact sidebar/navigation area and
+a main content area.
+
+The navigation should not consume unnecessary screen space.
+
+------------------------------------------------------------------------
+
+# Architecture
+
+Camp Match uses a **frontend-first, API-ready architecture**.
+
+The current frontend uses mock data and is designed to later consume a
+Python/FastAPI REST API.
+
+The intended flow is:
+
+``` text
+UI Component
+      ↓
+Feature Hook / Service
+      ↓
+Data Provider
+      ↓
+Mock Data
+```
+
+Later:
+
+``` text
+UI Component
+      ↓
+Feature Hook / Service
+      ↓
+API Service
+      ↓
+API Client
+      ↓
+FastAPI
+```
+
+UI components should not depend directly on the data source.
+
+------------------------------------------------------------------------
+
+# Data Architecture
+
+Dynamic content must not be hard-coded inside visual components.
+
+Examples:
+
+-   Properties
+-   Users
+-   Scouts
+-   Bookings
+-   Messages
+-   Notifications
+-   Universities
+-   Verification information
+-   Payments
+
+Prefer:
+
+``` tsx
+<PropertyCard listing={listing} />
+```
+
+over hard-coding property information inside the component.
+
+Mock data should be separated from application logic and structured
+similarly to realistic API responses.
+
+------------------------------------------------------------------------
+
+# Service / Data Access Layer
+
+Features should access data through reusable services or hooks.
+
+Examples:
+
+``` text
+getListings()
+getListingById(id)
+searchListings(params)
+getSavedListings()
+```
+
+Later, these services can call API endpoints such as:
+
+``` text
+GET /api/v1/listings
+GET /api/v1/listings/:id
+```
+
+without requiring visual components to change.
+
+**Do not invent undocumented endpoints.**
+
+------------------------------------------------------------------------
+
+# API Boundary
+
+The eventual backend will be a **Python/FastAPI REST API** returning
+JSON.
+
+The frontend should depend only on documented API contracts and
+API-facing data representations.
+
+The frontend should not depend on:
+
+-   Database schemas
+-   Database tables
+-   Repository implementations
+-   Internal Python classes
+-   Internal backend services
+-   Storage-provider implementation
+-   Undocumented response fields
+
+The backend remains authoritative for business rules and permissions.
+
+------------------------------------------------------------------------
+
+# API Client
+
+The API client should eventually handle:
+
+-   Base URL configuration
+-   HTTP requests
+-   Authentication headers
+-   JSON serialization
+-   Error normalization
+-   Request cancellation
+-   API versioning
+
+Avoid placing raw `fetch()` calls directly inside visual components.
+
+------------------------------------------------------------------------
+
+# Environment Configuration
+
+Do not hard-code API URLs.
+
+Prepare separate configurations for:
+
+-   Development
+-   Staging
+-   Production
+
+For a Vite-based project, an environment variable such as:
+
+``` text
+VITE_API_BASE_URL
+```
+
+may be used for the API base URL.
+
+**Never expose secrets in frontend environment variables.**
+
+------------------------------------------------------------------------
+
+# Type Safety
+
+Create reusable TypeScript types/interfaces for API-facing frontend
+data.
+
+Expected domain types include:
+
+-   Listing
+-   User
+-   Scout
+-   Booking
+-   Message
+-   Notification
+-   University
+-   Verification
+-   Payment
+
+Frontend types should represent the API-facing data model rather than
+internal database schemas.
+
+------------------------------------------------------------------------
+
+# Component Architecture
+
+Prefer reusable components over duplicated markup.
+
+## Shared UI primitives
+
+``` text
 Button
 Input
 Select
@@ -366,10 +504,11 @@ EmptyState
 ErrorState
 LoadingState
 Pagination
+```
 
+## Camp Match components
 
-Then create Camp Match-specific components:
-
+``` text
 PropertyCard
 PropertyGrid
 PropertyGallery
@@ -381,797 +520,731 @@ BookingCard
 BookingStatus
 MessagePreview
 NotificationItem
+```
 
+Search for and reuse existing components before creating duplicates.
 
-Do not put everything into one huge component.
+Avoid giant components containing unrelated functionality.
 
-Keep components modular and reusable.
+------------------------------------------------------------------------
 
-10. DATA ARCHITECTURE
+# Property Card
 
-This is extremely important.
-
-Create separate mock data files.
-
-Example:
-
-src/
-  data/
-    mock/
-      listings.ts
-      users.ts
-      scouts.ts
-      bookings.ts
-      messages.ts
-      notifications.ts
-      universities.ts
-
-
-Use arrays of objects.
-
-Example:
-
-export const mockListings = [
-  {
-    id: "listing_001",
-    title: "Modern Self-Contained Apartment",
-    price: 450000,
-    pricePeriod: "year",
-    accommodationType: "self-contained",
-    images: [...],
-    location: {
-      area: "Satellite Town",
-      city: "Calabar",
-      distanceFromCampus: 1.2
-    },
-    verified: true,
-    scout: {...},
-    features: [...]
-  }
-]
-
-
-The exact fields can evolve, but the important principle is:
-
-Components consume objects from data sources rather than containing hard-coded content.
-
-11. DO NOT HARDCODE UI DATA
-
-Bad:
-
-<h2>Modern Self-Contained Apartment</h2>
-<p>₦450,000</p>
-<p>Satellite Town</p>
-
-
-inside a reusable PropertyCard.
-
-Good:
-
-<PropertyCard listing={listing} />
-
-
-Then:
-
-listing.title
-listing.price
-listing.location
-listing.images
-
-
-The same component should work for every listing.
-
-12. CREATE A DATA ACCESS LAYER
-
-Even though we're using mock data, don't import mock arrays directly into every component.
-
-Use a service/repository-style abstraction.
-
-For example:
-
-features/
-  listings/
-    components/
-    hooks/
-    services/
-    types/
-
-
-A service might expose:
-
-getListings()
-getListingById(id)
-searchListings(params)
-getSavedListings()
-
-
-Initially these functions can return mock data.
-
-Later they can call:
-
-GET /api/v1/listings
-GET /api/v1/listings/:id
-
-
-without requiring the PropertyCard or Listing page to change.
-
-13. API-READY ARCHITECTURE
-
-Create an API client abstraction even though the backend is not connected yet.
-
-Conceptually:
-
-Component
-    ↓
-Hook
-    ↓
-Service
-    ↓
-API Client
-
-
-The API client should eventually handle:
-
-Base URL
-
-HTTP requests
-
-Authentication headers
-
-JSON serialization
-
-Error normalization
-
-Request cancellation
-
-API versioning
-
-For now, use mock implementations.
-
-Do not put:
-
-fetch(...)
-
-
-directly inside visual components.
-
-14. TYPES
-
-Create TypeScript types/interfaces for the frontend data.
-
-For example:
-
-Listing
-User
-Scout
-Booking
-Message
-Notification
-University
-Verification
-Payment
-
-
-Keep frontend types based on the API representation, not database schemas.
-
-The backend will eventually expose JSON DTO-style responses.
-
-The frontend should consume those representations.
-
-15. PROPERTY CARD
-
-Make PropertyCard one of the strongest reusable components in the application.
+`PropertyCard` is a core Camp Match component.
 
 It should support:
 
-Property image
+-   Property image
+-   Favorite action
+-   Property title
+-   Price
+-   Price period
+-   Location
+-   Distance from university
+-   Accommodation type
+-   Verification badge
+-   Scout information where appropriate
 
-Favorite button
+The same component should work across the marketplace.
 
-Property title
+------------------------------------------------------------------------
 
-Price
+# Student Experience
 
-Price period
+## Home
 
-Location
+The Home experience should remain student-focused.
 
-Distance from university
+Typical content:
 
-Accommodation type
-
-Verification badge
-
-Scout information where appropriate
-
-Example:
-
-┌───────────────────────────────┐
-│                               │
-│       PROPERTY IMAGE          │
-│                           ♡   │
-│                               │
-├───────────────────────────────┤
-│ Self-contained apartment      │
-│                               │
-│ ₦450,000 / year               │
-│ 📍 Satellite Town             │
-│ 1.2 km from campus            │
-│                               │
-│ ✓ Verified                    │
-└───────────────────────────────┘
-
-
-Make the entire card interactive.
-
-16. HOME PAGE
-
-Create a beautiful student-focused dashboard.
-
-Top:
-
+``` text
 Good morning 👋
 
 Find your next home.
 
-
-Search:
-
-🔍 Search by university, area or property
-
-
-Sections:
+[ Search by university, area or property ]
 
 Recommended for you
-
-
 Near your campus
-
-
 Recently added
+```
 
+Avoid overwhelming the student with excessive information.
 
-Use horizontal scrolling sections on mobile where appropriate.
+## Discover
 
-Do not overload the screen.
+Discover is the core marketplace experience.
 
-17. DISCOVER PAGE
+Support:
 
-This is the core Camp Match experience.
+-   Search
+-   Filters
+-   Sorting
+-   Responsive property grids
 
-Include:
+Filters include:
 
-Discover
+-   University
+-   Location
+-   Price range
+-   Accommodation type
+-   Distance
+-   Verified listings
 
-[ Search ]
+Recommended grid behavior:
 
-Filters
-Sort
+``` text
+Mobile   → 1 column
+Tablet   → 2 columns
+Desktop  → 3–4 columns depending on width
+```
 
+## Property Details
 
-Filters should include:
+Property details should feel premium and trustworthy.
 
-University
+Typical structure:
 
-Location
-
-Price range
-
-Accommodation type
-
-Distance
-
-Verified listings
-
-Display listings using reusable PropertyCards.
-
-Use responsive grids.
-
-Mobile:
-
-1 column
-
-
-Tablet:
-
-2 columns
-
-
-Desktop:
-
-3–4 columns depending on width
-
-
-18. PROPERTY DETAILS PAGE
-
-Make this feel premium.
-
-Structure:
-
-← Back
-
-Image gallery
-
-Property title
-
+``` text
+Back
+↓
+Image Gallery
+↓
+Property Title
 Price
-
 Location
-
 Verification
-
 Description
-
 Features
-
-Location/map
-
-Scout information
-
+Location / Map
+Scout Information
 Availability
-
 Booking CTA
+```
 
+On mobile, a sticky bottom booking action may be used.
 
-Mobile should have a sticky bottom action:
+On desktop, a sticky booking card may be used on the right side.
 
-₦450,000/year
+------------------------------------------------------------------------
 
-[ Request booking ]
+# Trust & Verification
 
+Verification is a major Camp Match differentiator.
 
-Desktop can use a sticky booking card on the right side.
+Use reusable components such as:
 
-19. TRUST SYSTEM
-
-Verification is a core Camp Match differentiator.
-
-Create reusable:
-
+``` text
 VerificationBadge
 VerificationCard
 VerificationStatus
+```
 
+Verification should communicate meaningful information, such as:
 
-Don't just show:
+-   Identity verified
+-   Property information reviewed
+-   Scout verified
 
-✓ Verified
+Verification should feel trustworthy without overwhelming the user.
 
+------------------------------------------------------------------------
 
-Create a useful explanation:
+# State Management
 
-✓ Camp Match Verified
+Every API-driven feature should intentionally support:
 
-Identity verified
-Property information reviewed
-Scout verified
-
-
-Make verification feel trustworthy but not overwhelming.
-
-20. STATE DESIGN
-
-Every API-driven feature must intentionally support:
-
-Loading
-Success
-Empty
-Error
-
-
-Also support relevant transitional states.
+-   Loading
+-   Success
+-   Empty
+-   Error
+-   Relevant transitional states
 
 Examples:
 
+``` text
 Payment processing
 Verification pending
 Booking pending
 Booking confirmed
 Booking cancelled
+```
 
+Use skeleton loaders and reusable state components rather than blank
+screens.
 
-Use skeleton loaders rather than blank screens.
+------------------------------------------------------------------------
 
-Create reusable:
+# Accessibility
 
-Skeleton
-LoadingState
-EmptyState
-ErrorState
+Accessibility is part of the product quality standard.
 
+Provide:
 
-21. MOCK DATA MUST LOOK REALISTIC
+-   Semantic HTML
+-   Keyboard navigation
+-   Proper form labels
+-   Accessible buttons
+-   Visible focus states
+-   Appropriate contrast
+-   Meaningful alt text
+-   Screen-reader-friendly state changes
+-   Accessible dialogs and interactive controls
 
-Don't use:
+------------------------------------------------------------------------
 
-Property 1
-Property 2
-Property 3
+# Animation
 
+Animations should be subtle and purposeful.
 
-Use realistic Nigerian student-housing examples.
+Appropriate examples:
 
-Use realistic:
-
-Property names
-
-Nigerian locations
-
-Naira pricing
-
-Universities
-
-Areas
-
-Distances
-
-Scout profiles
-
-Property images
-
-But keep the data clearly mock/demo data.
-
-The mock structure should closely resemble what a real FastAPI JSON response would look like.
-
-22. ROUTING
-
-Use frontend routes based on user experiences:
-
-/
- /login
- /register
- /onboarding
- /home
- /discover
- /listings/:id
- /saved
- /messages
- /messages/:id
- /bookings
- /bookings/:id
- /payments
- /profile
-
-
-Later:
-
-/scout
-/scout/listings
-/scout/listings/new
-/scout/bookings
-
-
-Do not create routes based on backend modules such as:
-
-/housing-module
-/payment-module
-/identity-module
-
-
-23. ACCESSIBILITY
-
-Build accessible UI from the beginning.
-
-Include:
-
-Keyboard navigation
-
-Proper labels
-
-Semantic HTML
-
-Accessible buttons
-
-Focus states
-
-Appropriate contrast
-
-Alt text
-
-Screen-reader-friendly states
-
-Do not sacrifice accessibility for visual design.
-
-24. ANIMATION
-
-Use subtle animations.
-
-Good:
-
-Card hover
-
-Button feedback
-
-Page transitions
-
-Modal transitions
-
-Skeleton shimmer
-
-Favorite interaction
-
-Navigation transitions
+-   Card hover
+-   Button feedback
+-   Page transitions
+-   Modal transitions
+-   Skeleton loading
+-   Favorite interactions
+-   Navigation transitions
 
 Avoid excessive animation.
 
-The interface should feel smooth, not flashy.
+------------------------------------------------------------------------
 
-25. MOBILE UX
+# Mock Data
 
-Pay special attention to:
+Mock data should be realistic and representative of the Nigerian
+student-housing market.
 
-Thumb-friendly buttons
+Use realistic examples for:
 
-Bottom navigation
+-   Property names
+-   Nigerian locations
+-   Naira pricing
+-   Universities
+-   Areas
+-   Campus distances
+-   Scout profiles
+-   Property images
 
-Sticky CTAs
+Keep mock data clearly separated from application logic so it can later
+be replaced by API responses.
 
-Horizontal scrolling
+------------------------------------------------------------------------
 
-Bottom sheets for filters
+# Phase 3 --- Property Management
 
-Large touch targets
+**Current phase: In Progress**
 
-Readable typography
+Phase 3 introduces property-management capabilities for Property Owners
+and House Scouts.
 
-Fast-loading cards
+## Property Owner
 
-Image optimization
+The Owner experience includes:
 
-The mobile experience should feel like a real mobile application even though this is a web frontend.
+-   Owner dashboard
+-   My properties
+-   Add property
+-   Edit property
+-   Photo management
+-   Availability management
+-   Verification status
+-   Property activity
+-   Authorized Scout management
 
-26. BACKEND INTEGRATION LATER
+## House Scout
 
-When the FastAPI backend becomes available, the replacement should look approximately like:
+The Scout experience includes:
 
-Current:
+-   Scout dashboard
+-   Managed properties
+-   Owner relationship visibility
+-   Permitted property-management actions
+-   Availability management where authorized
+-   Activity
 
-Component
- ↓
-Hook
- ↓
-ListingService
- ↓
-MockProvider
+Owner and Scout experiences must remain clearly differentiated.
 
+------------------------------------------------------------------------
 
-Later:
+# Phase 3 Property Creation
 
-Component
- ↓
-Hook
- ↓
-ListingService
- ↓
-API Client
- ↓
-FastAPI
+The property creation experience should use a multi-step flow.
 
+### Step 1 --- Basic Information
 
-The UI components should remain unchanged.
+-   Property title
+-   Accommodation type
+-   Description
 
-Do not design the application in a way where replacing mock data requires rewriting pages.
+### Step 2 --- Location
 
-27. ENVIRONMENT CONFIGURATION
+-   University
+-   Area
+-   Address
+-   Location/map representation
 
-Do not hard-code API URLs.
+### Step 3 --- Pricing & Availability
 
-Prepare for:
+-   Rent
+-   Payment frequency
+-   Availability date
 
-Development
-Staging
-Production
+### Step 4 --- Features & Amenities
 
+Examples:
 
-Use environment variables for the API base URL.
+-   Bedrooms
+-   Bathrooms
+-   Water
+-   Electricity
+-   Prepaid meter
+-   Parking
+-   Security
+-   Internet
+-   Kitchen
+-   Furnished
 
-Example concept:
+### Step 5 --- Photos
 
-VITE_API_BASE_URL
+Support:
 
+-   Image selection
+-   Preview
+-   Upload progress
+-   Remove
+-   Reorder
+-   Primary image
+-   Upload errors
+-   Empty state
 
-Do not put secrets in frontend environment variables.
+### Step 6 --- Review
 
-Remember that frontend environment variables are public.
+Show a clear summary before submission and allow individual sections to
+be edited.
 
-28. CODE QUALITY
+------------------------------------------------------------------------
 
-Keep the code:
+# Property Status
 
-Modular
+Property status is backend-authoritative.
 
-Typed
+Possible states:
 
-Reusable
+``` text
+Draft
+Pending review
+Active
+Unavailable
+Changes requested
+Rejected
+Suspended
+```
 
-Readable
+A newly submitted property must **not** automatically be presented as
+verified.
 
-Maintainable
+Conceptual flow:
 
-Avoid:
+``` text
+Draft
+  ↓
+Submitted
+  ↓
+Pending verification/review
+  ↓
+Backend decision
+  ↓
+Active / Changes requested / Rejected
+```
 
-Giant components
+------------------------------------------------------------------------
 
-Repeated UI
+# Property Photos & Future Image Review
 
-Hard-coded data
+Camp Match may eventually use backend/image-analysis systems to review
+property images.
 
-Inline API calls
+Phase 3 should prepare the UI for states such as:
 
-Duplicate business logic
+``` text
+Accepted
+Pending review
+Review required
+Rejected
+```
 
-Unnecessary global state
+The frontend should **not** attempt to determine whether an image was
+AI-generated. That decision belongs to the backend or dedicated
+verification service.
 
-Keep server state and UI state conceptually separate.
+------------------------------------------------------------------------
 
-29. IMPORTANT BACKEND BOUNDARY
+# Owner ↔ Scout Management
 
-The frontend should NEVER assume:
+Property Owners should be able to:
 
-Database structure
+-   View authorized Scouts
+-   Search Scouts where appropriate
+-   Authorize a Scout
+-   Remove a Scout
+-   See which properties a Scout manages
 
-Database IDs beyond documented API identifiers
+Authorization and permissions must ultimately be enforced by the
+backend.
 
-Repository behavior
+Frontend controls are not a security boundary.
 
-Backend implementation
+------------------------------------------------------------------------
 
-Internal Python classes
+# Permissions
 
-Internal services
+The frontend may hide or disable unavailable actions and explain
+permission states.
 
-Storage providers
+However, the backend is authoritative.
 
-Undocumented API fields
+Treat these as distinct states:
 
-The frontend depends only on the eventual API contract.
+``` text
+401 Unauthorized
+403 Forbidden
+```
 
-30. FIRST BUILD — DO THIS NOW
+------------------------------------------------------------------------
 
-For the first implementation, build ONLY:
+# Error Handling
 
-Design system
+Normalize API errors centrally.
 
-Colors
+Common categories:
 
-Typography
+``` text
+VALIDATION_ERROR
+UNAUTHORIZED
+FORBIDDEN
+NOT_FOUND
+CONFLICT
+RATE_LIMITED
+SERVER_ERROR
+NETWORK_ERROR
+```
 
-Spacing
+Avoid inconsistent error handling across individual components.
 
-Buttons
+------------------------------------------------------------------------
 
-Inputs
+# Security Principles
 
-Cards
+Do not:
 
-Badges
+-   Store secrets in frontend code
+-   Hard-code credentials
+-   Treat hidden UI elements as authorization
+-   Access databases directly
+-   Depend on internal backend implementation details
 
-Navigation
+Sensitive authorization and business rules must ultimately be enforced
+by the backend.
 
-Skeletons
+------------------------------------------------------------------------
 
-Empty states
+# Phase 3 Development Sequence
 
-Error states
+Implement Phase 3 incrementally:
 
-Application shell
+``` text
+1. Inspect existing architecture
+2. Owner Dashboard
+3. My Properties
+4. Add Property Wizard
+5. Property Management / Edit
+6. Photo Management
+7. Availability
+8. Verification Status
+9. Owner ↔ Scout Management
+10. Scout Dashboard
+11. Scout Property Management
+12. Responsive refinement
+13. Loading / Error / Empty states
+14. Accessibility review
+15. Code cleanup and component reuse review
+```
 
-Desktop sidebar
+After each major milestone:
 
-Mobile bottom navigation
+1.  Test existing functionality.
+2.  Verify Phase 1 and Phase 2 have not regressed.
+3.  Check mobile and desktop behavior.
+4.  Review the Git diff.
+5.  Fix regressions.
+6.  Commit the stable state.
 
-Header
+------------------------------------------------------------------------
 
-Student Home
+# Git Workflow
 
-Discover
+GitHub is the project's source of truth.
 
-PropertyCard
+Before major changes, create a checkpoint:
 
-Property Details
+``` bash
+git add .
+git commit -m "Camp Match - Phase 2 complete UI checkpoint"
+git push
+```
 
-Use mock JSON data.
+After each major Phase 3 milestone, create another meaningful commit.
 
-Do NOT build:
+This makes unwanted changes recoverable.
 
-Payments
+------------------------------------------------------------------------
 
-Admin
+# Development Principles
 
-Scout dashboard
+### Preserve before replacing
 
-Messaging
+Extend an existing component when it can safely support the new feature.
 
-Verification workflows
+### Reuse before duplicating
 
-Complex authentication
+Search the codebase before creating new components.
 
-yet.
+### API contract before assumptions
 
-Those come later.
+Do not invent backend behavior when the contract is undefined.
 
-31. BUILD IN SMALL ITERATIONS
+### Backend authority
 
-After completing the first build, STOP.
+Business rules, permissions, verification, and payment states must
+ultimately be authoritative on the backend.
 
-Do not automatically generate the rest of the application.
+### Small changes before large rewrites
 
-I want to review the first experience and then continue feature-by-feature.
+Implement features incrementally and review changes before continuing.
 
-The development sequence should be:
+### UX before feature count
 
-STEP 1
-Design system
+A smaller number of polished experiences is better than many unfinished
+screens.
 
-↓
+### Consistency before novelty
 
-STEP 2
-App shell
+New interfaces should feel like they were always part of Camp Match.
 
-↓
+------------------------------------------------------------------------
 
-STEP 3
-Home
+# Planned Roadmap
 
-↓
+## Phase 1 --- Design System & Marketplace Foundation
 
-STEP 4
-Discover
+**Completed**
 
-↓
+Design system, application shell, Home, Discover, property cards,
+property details, and responsive foundation.
 
-STEP 5
-Property Card
+## Phase 2 --- Authentication & Onboarding
 
-↓
+**Completed**
 
-STEP 6
-Property Details
+Login, registration, verification flow, role selection, and Student,
+Property Owner, and House Scout onboarding.
 
-↓
+## Phase 3 --- Property Management
 
-STOP FOR REVIEW
+**In Progress**
 
+Owner dashboard, property creation and management, photos, availability,
+verification status, Owner/Scout management, and Scout property
+management.
 
-Only after review should we continue.
+## Phase 4 --- Roommate Matching
 
-32. FINAL GOAL
+**Planned**
 
-The final Camp Match frontend should feel like a real production SaaS/mobile marketplace, not an AI-generated template.
+Roommate preferences, compatibility signals, matching experience, match
+results, and live-alone preference handling.
 
-Prioritize:
+## Phase 5 --- Booking & Escrow/Payments
 
-Excellent UX > number of screens
+**Planned**
 
-Reusable architecture > quick hacks
+Booking requests, booking states, payment initiation, escrow flow,
+transaction status, and payment confirmation.
 
-Responsive design > desktop-only design
+## Phase 6 --- Messaging & Notifications
 
-API-ready data architecture > hard-coded mockups
+**Planned**
 
-Trust and clarity > visual complexity
+Conversations, messaging, notifications, read/unread states, and
+relevant property/booking alerts.
 
-Build the foundation carefully so that when the FastAPI backend is connected, the frontend can transition from mock data to real JSON API responses with minimal changes.
+## Phase 7 --- Verification & Trust & Safety
 
-Start now with Phase 1 only.
+**Planned**
 
-This project was built with [Lovable](https://lovable.dev).
+Identity verification, property verification, Scout verification,
+reporting, trust indicators, and safety workflows.
 
-## Build with Lovable
+## Phase 8 --- Dashboard Refinement
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b1fba615-b86b-46fc-b9b7-8db291949137).
+**Planned**
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Student, Owner, and Scout dashboard refinement, activity, statistics,
+saved properties, bookings, and matches.
 
-## Development
+## Phase 9 --- Administration
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+**Planned**
 
-```sh
-git clone <this-repository-url>
+Admin dashboard, user management, property moderation, verification
+review, reports/disputes, and platform controls.
+
+## Phase 10 --- Backend Integration & Testing
+
+**Planned**
+
+FastAPI integration, mock-to-real API transition, API contract
+validation, authentication/session testing, payment testing, error
+handling, security review, performance optimization, and end-to-end
+testing.
+
+------------------------------------------------------------------------
+
+# Local Development
+
+## Prerequisites
+
+-   Node.js
+-   npm
+-   Git
+
+## Clone the repository
+
+``` bash
+git clone <repository-url>
 cd <repository-name>
-npm i
+```
+
+## Install dependencies
+
+``` bash
+npm install
+```
+
+## Start the development server
+
+``` bash
 npm run dev
 ```
+
+Follow the local URL displayed by the development server.
+
+------------------------------------------------------------------------
+
+# Project Structure
+
+The exact structure should follow the existing codebase. A preferred
+feature-oriented structure is:
+
+``` text
+src/
+├── api/
+│   └── client/
+├── features/
+│   ├── auth/
+│   ├── student/
+│   ├── properties/
+│   ├── owner/
+│   └── scout/
+├── components/
+├── data/
+│   └── mock/
+├── hooks/
+├── types/
+├── utilities/
+└── ...
+```
+
+Do not rewrite the existing structure unnecessarily.
+
+------------------------------------------------------------------------
+
+# Long-Term Architecture
+
+``` text
+                CAMP MATCH FRONTEND
+                         │
+                         ▼
+                 Feature Components
+                         │
+                         ▼
+                  Hooks / Services
+                         │
+                         ▼
+                    API Client
+                         │
+                         ▼
+                 FastAPI REST API
+                         │
+                         ▼
+               Backend Domain Layer
+```
+
+The frontend remains independent of internal backend implementation
+details, allowing frontend and backend development to proceed in
+parallel.
+
+------------------------------------------------------------------------
+
+# Quality Standard
+
+Camp Match should feel like a real production product, not an
+AI-generated template.
+
+Priorities:
+
+``` text
+Excellent UX
+     >
+Reusable architecture
+     >
+Responsive design
+     >
+API-ready data architecture
+     >
+Trust and clarity
+     >
+Feature count
+```
+
+The objective is not simply to create more screens.
+
+The objective is to create a **coherent, trustworthy, maintainable
+student-housing platform**.
+
+------------------------------------------------------------------------
+
+# Core Product Principle
+
+> **Student --- Find a home.**\
+> **Property Owner --- Own, list, verify, and manage a property.**\
+> **House Scout --- Represent and manage authorized properties.**
+
+**One platform. Three distinct roles. One consistent Camp Match
+experience.**
+
+------------------------------------------------------------------------
+
+## Project Status
+
+Camp Match is actively under development with a strong emphasis on:
+
+-   Product quality
+-   UI consistency
+-   Maintainable architecture
+-   API readiness
+-   Responsive design
+-   Accessibility
+-   Trust and safety
